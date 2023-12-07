@@ -9,7 +9,11 @@ import org.hibernate.validator.constraints.URL;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "wp_users")
+@Table(name = "wp_users", indexes = {
+        @Index(name = "user_login_key", columnList =  "user_login"),
+        @Index(name = "user_nicename_key", columnList = "user_nicename"),
+        @Index(name = "user_email_key", columnList = "user_email")
+})
 public class User {
 
     @Id
