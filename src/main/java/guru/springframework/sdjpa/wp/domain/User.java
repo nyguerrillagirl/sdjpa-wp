@@ -1,6 +1,10 @@
 package guru.springframework.sdjpa.wp.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import org.hibernate.validator.constraints.URL;
 
 import java.sql.Timestamp;
 
@@ -12,32 +16,50 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @Size(max = 60)
     @Column(name = "user_login")
-    private String login;
+    private String login = "";
 
+    @NotNull
+    @Size(max = 255)
     @Column(name = "user_pass")
-    private String password;
+    private String password = "";
 
+    @NotNull
+    @Size(max = 50)
     @Column(name = "user_nicename")
-    private String nicename;
+    private String nicename = "";
 
+    @NotNull
+    @Size(max = 100)
     @Column(name = "user_email")
-    private String email;
+    @Email
+    private String email = "";
 
+    @NotNull
+    @Size(max = 100)
     @Column(name = "user_url")
-    private String url;
+    @URL
+    private String url = "";
 
+    @NotNull
     @Column(name = "user_registered")
-    private Timestamp registered;
+    private Timestamp registered = new Timestamp(System.currentTimeMillis());
 
+    @NotNull
+    @Size(max = 255)
     @Column(name = "user_activation_key")
-    private String activationKey;
+    private String activationKey = "";
 
+    @NotNull
     @Column(name = "user_status")
-    private Integer status;
+    private Integer status = 0;
 
+    @NotNull
+    @Size(max = 250)
     @Basic(optional = false)
-    private String displayName;
+    private String displayName = "";
 
     public Long getId() {
         return id;
