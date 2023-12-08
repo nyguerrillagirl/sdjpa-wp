@@ -70,6 +70,9 @@ public class User {
     @JoinColumn(name="user_id")
     private Set<UserMeta> userMetaSet;
 
+    @OneToMany(mappedBy = "user")
+    private Set<Comment> commentsSet;
+
     public Long getId() {
         return id;
     }
